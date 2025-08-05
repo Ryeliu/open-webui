@@ -43,9 +43,10 @@
 	import i18n, { initI18n, getLanguages, changeLanguage } from '$lib/i18n';
 	import { bestMatchingLanguage } from '$lib/utils';
 	import { getAllTags, getChatList } from '$lib/apis/chats';
-	import NotificationToast from '$lib/components/NotificationToast.svelte';
-	import AppSidebar from '$lib/components/app/AppSidebar.svelte';
-	import { chatCompletion } from '$lib/apis/openai';
+        import NotificationToast from '$lib/components/NotificationToast.svelte';
+        import AppSidebar from '$lib/components/app/AppSidebar.svelte';
+        import Footer from '$lib/components/layout/Footer.svelte';
+        import { chatCompletion } from '$lib/apis/openai';
 
 	import { beforeNavigate } from '$app/navigation';
 	import { updated } from '$app/state';
@@ -665,18 +666,19 @@
 				<slot />
 			</div>
 		</div>
-	{:else}
-		<slot />
-	{/if}
+        {:else}
+                <slot />
+                <Footer />
+        {/if}
 {/if}
 
 <Toaster
-	theme={$theme.includes('dark')
-		? 'dark'
-		: $theme === 'system'
-			? window.matchMedia('(prefers-color-scheme: dark)').matches
-				? 'dark'
-				: 'light'
+        theme={$theme.includes('dark')
+                ? 'dark'
+                : $theme === 'system'
+                        ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                                ? 'dark'
+                                : 'light'
 			: 'light'}
 	richColors
 	position="top-right"
