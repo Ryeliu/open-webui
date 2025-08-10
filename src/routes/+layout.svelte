@@ -658,17 +658,20 @@
 </svelte:head>
 
 {#if loaded}
-	{#if $isApp}
-		<div class="flex flex-row h-screen">
-			<AppSidebar />
+        {#if $isApp}
+                <div class="flex flex-row h-screen">
+                        <AppSidebar />
 
-			<div class="w-full flex-1 max-w-[calc(100%-4.5rem)]">
-				<slot />
-			</div>
-		</div>
+                        <div class="w-full flex-1 max-w-[calc(100%-4.5rem)] flex flex-col">
+                                <div class="flex-1 overflow-hidden">
+                                        <slot />
+                                </div>
+                                <Footer />
+                        </div>
+                </div>
         {:else}
                 <slot />
-                <Footer />
+                <Footer class="fixed bottom-0 left-0 right-0 z-[100]" />
         {/if}
 {/if}
 
